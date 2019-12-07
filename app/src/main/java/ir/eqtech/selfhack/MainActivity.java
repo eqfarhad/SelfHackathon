@@ -12,6 +12,7 @@ import android.net.wifi.p2p.WifiP2pDeviceList;
 import android.net.wifi.p2p.WifiP2pInfo;
 import android.net.wifi.p2p.WifiP2pManager;
 import android.net.wifi.p2p.nsd.WifiP2pDnsSdServiceInfo;
+import android.net.wifi.p2p.nsd.WifiP2pDnsSdServiceRequest;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -24,6 +25,8 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -65,9 +68,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        System.out.println("This is important");
         setContentView(R.layout.activity_main);
         initialWork();
         exqListener();
+        Fight fight = new Fight(new PlayerData(new Character("Paul", Race.DWARF, Role.HUNTER)), new PlayerData(new Character("Farhad", Race.HUMAN, Role.KNIGHT)));
+        System.out.println(fight.nextFight());
+        Gson gson = new Gson();
+        String s = gson.toJson(fight);
+        System.out.println(s);
     }
 
     Handler handler=new Handler(new Handler.Callback() {
@@ -110,7 +119,8 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(int i) {
-                        connectionStatus.setText("Discovery Starting Failed!");
+                        System.out.println("failed");
+                        connectionStatus.setText("Discovery Starting Failed! "+ i);
                     }
                 });
             }
@@ -167,7 +177,6 @@ public class MainActivity extends AppCompatActivity {
         mInterntFilter.addAction(WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION);
         mInterntFilter.addAction(WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION);
         mInterntFilter.addAction(WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION);
-
 
     }
 
