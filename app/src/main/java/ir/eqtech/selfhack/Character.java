@@ -63,4 +63,16 @@ public class Character {
     public String getName() {
         return this.name;
     }
+
+    public void addHealth() {
+        this.health++;
+    }
+
+    public void addAttack() {
+        this.attack++;
+    }
+
+    public void addSpeed() {
+        this.speed++;
+    }
 }
