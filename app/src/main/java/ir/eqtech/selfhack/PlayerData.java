@@ -1,20 +1,25 @@
 package ir.eqtech.selfhack;
 
-public class PlayerData {
-    private Character character;
-    private Troops fighters;
-    private Troops troops;
+import java.io.Serializable;
+import java.util.List;
 
-    public PlayerData(Character character, Troops troops){
+public class PlayerData implements Serializable {
+    private Character character;
+    private int id;
+    private Troops fighters = new Troops();
+    private Troops troops;
+    private DetectedPlayers detectedPlayers = new DetectedPlayers();
+
+    public PlayerData(int id, Character character, Troops troops){
+        this.id = id;
         this.character = character;
         this.troops = troops;
-        this.fighters = new Troops();
     }
 
-    public PlayerData(Character character) {
+    public PlayerData(int id, Character character) {
+        this.id = id;
         this.character = character;
         this.troops = new Troops();
-        this.fighters = new Troops();
     }
 
     public Character getCharacter() {
@@ -27,5 +32,21 @@ public class PlayerData {
 
     public Character getFighterAt(int i) {
         return this.fighters.getTroopAt(i);
+    }
+
+    public int getId() {
+        return this.id;
+    }
+
+    public void addDetectedPlayer(PlayerData detectedPlayer){
+        this.detectedPlayers.add(detectedPlayer);
+    }
+
+    public List<PlayerData> getDetectedPlayers() {
+        return detectedPlayers.getPlayers();
+    }
+
+    public String getName() {
+        return this.character.getName();
     }
 }

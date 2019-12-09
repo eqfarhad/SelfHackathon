@@ -59,4 +59,8 @@ public class Character {
     public String toString() {
         return this.name;
     }
+
+    public String getName() {
+        return this.name;
+    }
 }
