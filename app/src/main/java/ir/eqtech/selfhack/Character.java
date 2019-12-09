@@ -22,7 +22,7 @@ public class Character {
     private int attack;
     private int health;
     private int speed;
-    private int defense;
+    private int armor;
     private Race race;
     private Role role;
 
@@ -35,23 +35,35 @@ public class Character {
         this.attack = 1;
         this.health = 1;
         this.speed = 1;
-        this.defense = 1;
+        this.armor = 1;
     }
 
     public int getAttack() {
         return attack;
     }
 
-    public int getDefense() {
-        return defense;
+    public int getArmor() {
+        return armor;
     }
 
     public int getHealth() {
         return health;
     }
 
+    public int getSpeed() {
+        return speed;
+    }
+
+    public int getLvl() {
+        return lvl;
+    }
+
+    public int getXp() {
+        return xp;
+    }
+
     public float getFightValue() {
-        return (float) (this.attack * this.defense * this.health * this.speed);
+        return (float) (this.attack * this.armor * this.health * this.speed);
     }
 
     @NonNull
@@ -74,5 +86,13 @@ public class Character {
 
     public void addSpeed() {
         this.speed++;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public Race getRace() {
+        return race;
     }
 }

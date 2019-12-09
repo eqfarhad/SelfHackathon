@@ -72,6 +72,8 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.nav_troops:
                     fragment = new TroopsFragment();
                     break;
+                case R.id.nav_skills:
+                    fragment = new SkillsFragment();
             }
             Bundle bundle = new Bundle();
             bundle.putSerializable("playerData", playerData);
